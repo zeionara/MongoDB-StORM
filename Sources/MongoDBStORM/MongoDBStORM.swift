@@ -76,7 +76,7 @@ open class MongoDBStORM: StORM, StORMProtocol {
 		var usedb = db
 		if usedb.isEmpty { usedb = _database }
 		do {
-			let obj = try MongoClient(uri: "mongodb://\(MongoDBConnection.host)")
+			let obj = try MongoClient(uri: "mongodb+srv://\(MongoDBConnection.host)")
 			let database = MongoDatabase(client: obj, databaseName: usedb)
 			return database
 		} catch {
@@ -90,7 +90,7 @@ open class MongoDBStORM: StORM, StORMProtocol {
 		var usedb = db
 		if usedb.isEmpty { usedb = _database }
 		do {
-			let client = try MongoClient(uri: "mongodb://\(MongoDBConnection.host)")
+			let client = try MongoClient(uri: "mongodb+srv://\(MongoDBConnection.host)")
 			let collection = MongoCollection(client: client, databaseName: usedb, collectionName: _collection)
 			return (collection, client)
 		} catch {
