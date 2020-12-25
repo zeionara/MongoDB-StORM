@@ -7,8 +7,8 @@ let package = Package(
 		.library(name: "MongoDBStORM", targets: ["MongoDBStORM"])
 	],
 	dependencies: [
-		.package(url: "https://github.com/SwiftORM/StORM.git", from: "3.0.0"),
-		.package(name: "PerfectLogger", url: "https://github.com/PerfectlySoft/Perfect-Logger.git", from: "3.0.0"),
+		.package(url: "https://github.com/zeionara/StORM.git", .branch("master")),
+		.package(name: "PerfectLogger", url: "https://github.com/zeionara/Perfect-Logger.git", .branch("master")),
 		.package(url: "https://github.com/iamjono/SwiftRandom.git", from: "1.0.0"),
 		.package(name: "PerfectMongoDB", url: "https://github.com/zeionara/Perfect-MongoDB.git", .branch("master")),
 	],

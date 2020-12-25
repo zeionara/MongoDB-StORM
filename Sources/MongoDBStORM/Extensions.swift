@@ -15,7 +15,7 @@ extension BSON.OID
         
         if let expression = try? NSRegularExpression(pattern: "[0-9a-f]{24}", options: []) {
             #if os(Linux)
-                let range = NSMakeRange(0, string.characters.count)
+                let range = NSMakeRange(0, string.count)
             #else
                 let range = NSMakeRange(0, string.count)
             #endif
