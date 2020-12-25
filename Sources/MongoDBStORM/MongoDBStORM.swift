@@ -51,6 +51,10 @@ open class MongoDBStORM: StORM, StORMProtocol {
 	/// Database to be used for this object
 	public var _database = MongoDBConnection.database
 
+	public var credentials: String {
+		MongoDBConnection.self.authModeType == .none ? "" : "\(MongoDBConnection.username):\(MongoDBConnection.password)@"
+	}
+
 	/// Collection object that the child object relates to on the MongoDB server.
 	/// Defined as "var" as it is meant to be overridden by the child class.
 	/// Note this varies from the standard StORM terminology to be more familiar to MongoDB users
@@ -76,7 +80,7 @@ open class MongoDBStORM: StORM, StORMProtocol {
 		var usedb = db
 		if usedb.isEmpty { usedb = _database }
 		do {
-			let obj = try MongoClient(uri: "mongodb+srv://\(MongoDBConnection.host)")
+			let obj = try MongoClient(uri: "mongodb+srv://\(credentials)\(MongoDBConnection.host)")
 			let database = MongoDatabase(client: obj, databaseName: usedb)
 			return database
 		} catch {
@@ -90,7 +94,7 @@ open class MongoDBStORM: StORM, StORMProtocol {
 		var usedb = db
 		if usedb.isEmpty { usedb = _database }
 		do {
-			let client = try MongoClient(uri: "mongodb+srv://\(MongoDBConnection.host)")
+			let client = try MongoClient(uri: "mongodb+srv://\(credentials)\(MongoDBConnection.host)")
 			let collection = MongoCollection(client: client, databaseName: usedb, collectionName: _collection)
 			return (collection, client)
 		} catch {
